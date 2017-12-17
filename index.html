@@ -1,21 +1,59 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-    <title>TicTacToe</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/tic_tac_toe.css" type="text/css">
+    <title>Tic Tac Toe</title>
+    <style type="text/css">
+    body table {
+        border-collapse: collapse;
+        width: 150px;
+        margin: 10px;
+    }
+
+    body table td {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #555;
+        cursor: pointer;
+    }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 </head>
 
 <body>
-    <h1>Start Tic Tac Toe!!!</h1>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <script src="js/tic_tac_toe.js" type="text/javascript"></script>
+    <h1>Tic Tac Toe</h1>
+    <button title="Start new game!" id="start">Play</button>
+    <div id="playground"></div>
+    <p id="result" />
+    <script type="text/javascript">
+    $(document).ready(function() { //da se jS izvrsi tek nakon ucitavanje dokumenta
+        var cells; //inicijaliyovati u start metodi
+        function refresh() {
+            $("#playground").empty("table"); //iybaci table element
+            var table = $("<table>") //to document.createElbyID...
+            var tr;
+            $.each(cells, function(i) { //for petljaJQ for (var=0 i<cells.lenght i++)
+                if (!(i % 3) || !tr) { //0,3,6 je false inicijaliyuje se prvi put, izvrsava se //append je appendChild
+                    tr = $("<tr>");
+                };
+                var td = $("<td>"); //napravilo novi red documentcreateel <>  a ya $documengetelbytag, #dohvatiti nesto
+                td.attr("id", "cell_" + i);
+                td.html(cells[i]);
+                td.click(function() {
+                    $("#result").text("You've clicked on cell number " + $(this).attr("id").split("_")[1] + ".");
+                })
+                table.append(tr.append(td)); //dodatam tr u td, u tabelu da dodam tr
+            });
+            $("#playground").append(table); //tr.innewrHtml=.
+        }
+
+        $("#start").click(function() {
+            cells = ["", "", "", "", "", "", "", "", ""];
+            refresh();
+        })
+
+    })
+    </script>
+</body>
 
 </html>
